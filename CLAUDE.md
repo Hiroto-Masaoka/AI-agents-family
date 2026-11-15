@@ -5,4 +5,4 @@
 
 Claude Code 固有の補足:
 - コミットする場合は `Co-Authored-By:` トレーラーと `AI-Assisted:` トレーラーを付ける(`docs/DEVELOPMENT_GUIDELINES.md` §2)。
-- `git push` はユーザーの明示的な許可があるときだけ実行する。
+- commit・push は許可済み。履歴の書き換えは許可が必要(AGENTS.md §2)。

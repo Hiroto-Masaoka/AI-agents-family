@@ -13,8 +13,10 @@ ADR(Architecture Decision Record)は、重要な判断を「背景・選択肢�
 |-----|---------|--------|------|
 | [0001](ADR-0001-github-as-knowledge-base.md) | GitHub リポジトリを開発の中心的なナレッジベースにする | Decided | 2026-11-16 |
 | [0002](ADR-0002-incremental-development.md) | 小さく実装・試験・評価を繰り返す段階的開発 | Decided | 2026-11-16 |
-| [0003](ADR-0003-first-target-daily-operations.md) | 最初の目標を日常的な観測運用の自動化とする | Decided | 2026-11-16 |
+| [0003](ADR-0003-first-target-daily-operations.md) | 最初の目標を日常的な観測運用の自動化とする | Superseded by ADR-0008 | 2026-11-16 |
 | [0004](ADR-0004-hybrid-llm-environment.md) | LLM 実行環境は商用 API と自前計算機を併用する | Decided(方針)/ 具体構成は未定 | 2026-11-16 |
 | [0005](ADR-0005-reliability-labels.md) | 情報を 5 段階の信頼性ラベルで分類する | Decided | 2026-11-16 |
 | [0006](ADR-0006-human-in-the-loop-safety.md) | 観測装置の操作は人間の承認を前提に段階的に自動化する | Proposed | 2026-11-16 |
 | [0007](ADR-0007-start-with-single-agent.md) | 単一エージェントから始め、必要が示されてから分割する | Proposed | 2026-11-16 |
+| [0008](ADR-0008-general-purpose-agents-first.md) | 当面は汎用 AI-Agent を優先し、望遠鏡固有の開発は延期する | Decided | 2026-11-16 |
+| [0009](ADR-0009-phase1-read-only-policy.md) | Phase 1 のエージェントは厳密に読み取り専用とし、プログラム側で強制する | Decided(強制方法の詳細は Proposed) | 2026-11-16 |

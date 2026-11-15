@@ -1,6 +1,6 @@
 # ADR-0003: 最初の目標を日常的な観測運用の自動化とする
 
-- **Status:** Decided
+- **Status:** Superseded by [ADR-0008](ADR-0008-general-purpose-agents-first.md)(2026-11-16。以下の本文は決定当時のまま)
 - **日付:** 2026-11-16
 - **決定者:** 開発者
 - **関連:** PROJECT_OVERVIEW、ROADMAP

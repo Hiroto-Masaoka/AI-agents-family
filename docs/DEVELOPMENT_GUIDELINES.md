@@ -1,6 +1,6 @@
 # DEVELOPMENT_GUIDELINES — 開発管理ルール
 
-最終更新: 2026-11-16 / 状態: **Proposed(ユーザー承認待ち)** — 承認後に Decided へ変更し、DEVELOPMENT_LOG に記録する
+最終更新: 2026-11-16 / 状態: **Decided**(2026-11-16 開発者が承認、LOG-20261116-03)
 
 方針:**個人開発でも続けられる最小限のルール。** 迷ったら「後から自分(または別の AI)が読んで経緯が分かるか」で判断する。
 
@@ -17,7 +17,8 @@
 | `docs/<内容>` | 大きなドキュメント変更 | 例:`docs/architecture-v2` |
 
 - ブランチは短命に保つ(目安:1 週間以内に main へ取り込むか、記録を残して閉じる)。
-- `git push`、`rebase`、`reset --hard`、force push は **ユーザーの明示的な許可なしに AI が実行しない**。
+- `rebase`、`reset --hard`、force push(履歴の書き換え)は **ユーザーの明示的な許可なしに AI が実行しない**。
+- `git push`、Issue・Milestone の作成・更新は、2026-11-16 に開発者が AI による自動実行を許可した(規約に従い、機密情報を含めないこと)。
 - 失敗した実験ブランチも消さずに残してよい(記録として価値がある)。
 
 ## 2. Commit message の規則
@@ -70,7 +71,9 @@ AI-Assisted: Claude (claude-opus-5-5)
 | `type:question` | 未確認事項・調査 |
 | `type:idea` | 改善案・将来構想 |
 | `phase:0` 〜 `phase:7` | ROADMAP のフェーズ |
+| `priority:high` / `priority:medium` / `priority:low` | 優先度 |
 | `safety` | 装置操作・安全性に関わる |
+| `read-only` | 読み取り専用で実施するタスク(ADR-0009) |
 
 - 状態管理は GitHub 標準の Open / Closed のみ(ボードは任意)。
 - Milestone = ROADMAP のフェーズ。

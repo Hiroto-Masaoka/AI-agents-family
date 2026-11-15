@@ -1,7 +1,7 @@
 # AI-agents-family
 
-天文学研究、特に**自前の電波望遠鏡の観測運用**を支援する AI-Agent(AI エージェント)を、小さく作って試し、評価しながら段階的に育てていくためのリポジトリです。
-将来は X 線衛星など他の観測システムにも応用できる、汎用的な設計思想とノウハウの蓄積を目指します。
+日々の研究・業務を支援する AI-Agent(AI エージェント)を、小さく作って試し、評価しながら段階的に育てていくためのリポジトリです。
+当面はコーディング、文献調査、データ分析、定型作業、研究資金の公募調査などの汎用エージェントで経験を積み([ADR-0008](docs/DECISIONS/ADR-0008-general-purpose-agents-first.md))、将来は自前の電波望遠鏡の観測運用や X 線衛星などにも応用できる設計思想とノウハウの蓄積を目指します。
 
 > **AI エージェントとは?** 大規模言語モデル(LLM)が、与えられた目的に向かって「考える → ツールを使う → 結果を見る」を繰り返しながら作業を進める仕組みです。詳しくは [用語集](docs/GLOSSARY.md) を参照してください。
 
@@ -10,11 +10,12 @@
 | 項目 | 状態 | 信頼性ラベル |
 |------|------|-------------|
 | リポジトリ作成(Initial commit `c325ddb`) | 完了 | Confirmed |
-| 管理方針・ドキュメント基盤の整備 | 本コミット候補で作成(ユーザー確認待ち) | Proposed |
-| AI-Agent 本体の実装 | **未着手** | — |
+| 管理方針・ドキュメント基盤の整備 | 完了(開発者承認済み) | Confirmed |
+| Phase 1 試験計画(5 タスク) | 作成済み([計画](docs/EXPERIMENTS/PHASE1_TEST_PLAN.md)) | Decided |
+| AI-Agent 本体の実装 | **未着手**(P1-1 から開始) | — |
 | 試験・評価 | **未実施** | — |
 
-現在は **Phase 0(基盤整備)** です。詳細は [ROADMAP](docs/ROADMAP.md) と [開発ログ](docs/DEVELOPMENT_LOG.md) を参照してください。
+現在は **Phase 1(Read-Only Monitoring)** の準備段階です。詳細は [ROADMAP](docs/ROADMAP.md) と [開発ログ](docs/DEVELOPMENT_LOG.md) を参照してください。
 
 ## 信頼性ラベル
 
@@ -67,6 +68,7 @@ AI-agents-family/
 │   ├── PROMPTS/              ← AI に与えた重要な指示文の保存
 │   ├── references/           ← 外部情報から集めた参考資料
 │   └── templates/            ← 各種記録のテンプレート
+├── scripts/github/           ← GitHub の Milestone・Issue 作成スクリプト
 └── src/                      ← ソースコード(現時点では未実装)
 ```
 

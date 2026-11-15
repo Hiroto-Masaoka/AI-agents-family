@@ -51,7 +51,16 @@
 | 時系列データ | PostgreSQL(+TimescaleDB)、InfluxDB | 装置状態の長期保存が必要になったら |
 | 監視・可視化 | Prometheus + Grafana | 長期運用フェーズで検討 |
 
-### 2.5 天文・観測関連
+### 2.5 Phase 1 で使う外部情報源(候補、すべて読み取りのみ)
+
+| 用途 | 候補 | 備考 |
+|------|------|------|
+| 文献検索 | arXiv API(キー不要)、NASA ADS API(キー必要) | P1-2 |
+| リポジトリ・Issue | GitHub REST API の GET | P1-4 |
+| Web ページ | HTTP GET(許可リスト内) | P1-5 |
+| MCP SDK | 公式 MCP SDK(Python / TypeScript など) | P1-4。Julia 版の有無は未確認 |
+
+### 2.6 天文・観測関連(Phase 5 以降)
 
 | 分野 | 候補 | 備考 |
 |------|------|------|

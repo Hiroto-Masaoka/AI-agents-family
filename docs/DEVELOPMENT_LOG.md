@@ -13,6 +13,7 @@
 | [LOG-20261113-01](#log-20261113-01) | 2026-11-13 | AI-Agent family 構想の開始と公開情報の調査、Agent Family Kit v0.1 作成 | 議論・調査 |
 | [LOG-20261116-01](#log-20261116-01) | 2026-11-16 | GitHub リポジトリ作成(Initial commit) | 作業 |
 | [LOG-20261116-02](#log-20261116-02) | 2026-11-16 | リポジトリ管理基盤の設計とドキュメント整備 | 作業・設計 |
+| [LOG-20261116-03](#log-20261116-03) | 2026-11-16 | 管理方針の承認、優先順位の変更(汎用エージェント優先)、Phase 1 試験計画 | 意思決定・設計 |
 
 ---
 
@@ -133,3 +134,55 @@ AI-Agent 開発は初めてで、AI との対話で議論や判断が散逸し�
 - 生成物:本エントリ §4 のファイル一式(すべて AI 生成)
 - 人間の確認:**未確認**(ユーザーのレビュー待ち)
 - 採用しなかった案:ディレクトリを細かく分ける案(知見・課題・トラブルを個別フォルダにする)は、初心者の分かりやすさと運用負荷を優先して単一ファイルにした。
+
+---
+
+## LOG-20261116-03
+
+**日付:** 2026-11-16 / **種別:** 意思決定・設計 / **関連:** [ADR-0008](DECISIONS/ADR-0008-general-purpose-agents-first.md)、[ADR-0009](DECISIONS/ADR-0009-phase1-read-only-policy.md)、[PHASE1_TEST_PLAN](EXPERIMENTS/PHASE1_TEST_PLAN.md)、`scripts/github/`
+
+### 1. 何を実現しようとしたか
+(a) 管理方針の承認を反映する。(b) 当面の開発目標を、望遠鏡の運用自動化から「日常業務・研究を支援する汎用エージェント」に変更する。(c) Phase 1(Read-Only Monitoring)の 5 タスクを定義し、GitHub の Milestone・Issue として管理を始める。
+
+### 2. なぜ必要だったか
+開発者の指示(2026-11-16):
+- 提案したリポジトリ構成・テンプレート・Git 管理規則を承認。AI による整理・文書更新・commit・push・Issue / Milestone 管理を許可。
+- 当面は、実際の業務と研究に役立つエージェントを作りながら、エージェントの構成・ツール連携・メモリ・ワークフロー・マルチエージェント協調・評価の実践経験を積みたい。望遠鏡の仕様・制御方式の確認は、将来の観測所運用システムの開発まで不要。
+- Phase 1 は厳密に読み取り専用(ファイル変更・システム変更・外部への書き込みなし)。
+
+### 3. 採用した技術・手法
+- 5 タスクを「新しく学ぶ要素を 1〜2 個ずつ増やす」順に配置(最小ループ → 外部 API → 構造化データ → MCP・ワークフロー → マルチエージェント+評価)。
+- 各タスクに数値の合格基準を設定し、正解が独立に確認できる題材を選んだ(リポジトリ文書、実在確認できる論文 ID、独立に計算した数値、人手で作った正解一覧、公式ページ)。
+- Read-Only はツールを与えないことで強制し、SHA-256 一覧の前後比較で検証する(ADR-0009)。
+
+### 4. 実装・変更内容
+- 初回のドキュメント基盤(LOG-20261116-02 の内容)をコミット(`.github/` テンプレートは正規の場所に配置)。
+- 新規:ADR-0008、ADR-0009、`docs/EXPERIMENTS/PHASE1_TEST_PLAN.md`、`scripts/github/setup_phase1.sh`、`scripts/github/issues/*.md`(Issue 本文 5 件)。
+- 更新:README、AGENTS.md、CLAUDE.md、PROJECT_OVERVIEW、ARCHITECTURE(当面の構成 §2 を追加、望遠鏡向けは将来構想へ)、ROADMAP(フェーズを再編)、DEVELOPMENT_GUIDELINES(Decided に変更、priority / read-only ラベル追加、push 許可を反映)、OPEN_ISSUES(望遠鏡関連を保留へ)、TECH_STACK、GLOSSARY、DECISIONS/README、ADR-0003(Status を Superseded に変更。本文は当時のまま)、EXPERIMENTS/README、KNOWLEDGE、TROUBLESHOOTING、CHANGELOG、src/README。
+
+### 5. 試験内容
+- Markdown の相対リンク検査、スクリプトの構文検査(`bash -n`)。
+- GitHub への書き込み(ラベル作成、push)の試行。
+
+### 6. 試験結果
+- リンク切れ 0 件、スクリプト構文 OK(Confirmed)。
+- **GitHub への書き込みは失敗**:クラウド側の AI セッションからの API 書き込み(ラベル作成)は `HTTP 403: Resource not accessible by integration`、push も権限不足で拒否。開発者の Mac 側シェルからは github.com に接続できなかった(T-02)。
+- そのため Milestone・Issue は未作成。push と作成は開発者の Mac から実行する(OPEN_ISSUES I-02、I-03)。
+
+### 7. 問題と原因
+- 原因:このセッションの GitHub 連携に、対象リポジトリへの書き込み権限が付与されていない(Claude GitHub App が未インストール、または未リンク)。読み取りは可能。(Confirmed:エラーメッセージより)
+
+### 8. 得られた知見
+- AI に push や Issue 作成を任せるには、許可の意思表示とは別に、AI 側の GitHub 連携に書き込み権限が必要(→ KNOWLEDGE K-02)。
+
+### 9. 次に実施すること
+1. 開発者の Mac で push し、`scripts/github/setup_phase1.sh` を実行(I-02、I-03)
+2. 作成された Issue 番号を ROADMAP・OPEN_ISSUES に追記(I-05)
+3. Q-05(LLM API)と Q-06(開発言語)を決め、P1-1 に着手
+
+### AI 利用の記録
+- ツール:Claude(claude-opus-5-5、claude.ai から Claude Code 環境で作業)
+- 依頼内容:開発者のメッセージ(2026-11-16 01:08 JST)の Next Actions 1〜4
+- 生成物:§4 のファイル一式(すべて AI 生成)
+- 人間の確認:管理方針は開発者が承認済み。本エントリで追加した Phase 1 計画・ADR-0008/0009 の文面は **未確認**(開発者のレビュー待ち)
+- 採用しなかった案:定期実行(cron 等)を P1-4 に含める案は、OS 設定の変更にあたるため Phase 3 に回した。申請書作成支援は書き込みを伴うため Phase 2 に回した。
