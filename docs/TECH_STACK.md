@@ -11,6 +11,7 @@
 | バージョン管理 | Git + GitHub(`Hiroto-Masaoka/AI-agents-family`) | Confirmed | リポジトリ作成済み。[ADR-0001](DECISIONS/ADR-0001-github-as-knowledge-base.md) |
 | ドキュメント | Markdown + Mermaid(図) | Decided | GitHub 上でそのまま表示でき、どの AI も読める |
 | 開発支援 AI | Claude(claude.ai、Claude Code) | Confirmed(ドキュメント作成で使用) | 他の AI の利用も可。記録ルールは共通 |
+| 開発言語 | Python(エージェント)+ Julia(重い計算) | Decided | [ADR-0010](DECISIONS/ADR-0010-python-agents-julia-compute.md) |
 | LLM 実行環境の方針 | 商用 API とローカル(自前計算機)の併用 | Decided(方針のみ) | [ADR-0004](DECISIONS/ADR-0004-hybrid-llm-environment.md) |
 
 ## 2. 導入候補(Proposed、未調査)
@@ -19,7 +20,7 @@
 
 | 区分 | 候補 | 比較の観点 |
 |------|------|-----------|
-| 商用 API | Anthropic(Claude)、OpenAI(GPT)、Google(Gemini) | 推論性能、Tool Calling の安定性、料金、データ取り扱い規約 |
+| 商用 API | Anthropic(Claude)、OpenAI(GPT)、Google(Gemini) | 推論性能、Tool Calling の安定性、料金、データ取り扱い規約。**2026-11 の比較:[llm-api-comparison-2026-11.md](references/llm-api-comparison-2026-11.md)**(提案は [ADR-0011](DECISIONS/ADR-0011-phase1-llm-api.md)) |
 | ローカル LLM の実行ソフト | Ollama、llama.cpp、vLLM | 導入の容易さ、速度、対応 GPU / Apple Silicon |
 | ローカル LLM のモデル | Llama 系、Qwen 系、Gemma 系など公開モデル | 日本語能力、Tool Calling 対応、必要メモリ |
 
@@ -71,7 +72,7 @@
 
 ## 3. 比較検討事項(未決定)
 
-### 3.1 開発言語:Julia か Python か(Proposed)
+### 3.1 開発言語:Julia か Python か(**Decided** 2026-11-16、[ADR-0010](DECISIONS/ADR-0010-python-agents-julia-compute.md))
 
 | | Julia | Python |
 |---|---|---|
@@ -79,7 +80,7 @@
 | LLM SDK・エージェント関連の公式ライブラリ | 少ない(HTTP で API を直接呼ぶことは可能) | 豊富(各社公式 SDK、MCP SDK) |
 | 天文データ処理 | 高速。既存資産があれば活用可 | Astropy など既存ツールが豊富 |
 
-**提案:** エージェント部分(LLM 呼び出し・ツール接続)は SDK が揃う Python、重いデータ処理は Julia で書き、ツールとして呼び出す分担を検討する。→ 決定は保留([OPEN_ISSUES](OPEN_ISSUES.md))。
+**決定:** エージェント部分(LLM 呼び出し・ツール接続・MCP・評価)は公式ライブラリが揃う Python、重い計算は高速処理とメモリ効率のために Julia で書き、ツールとして呼び出す。連携方式は ADR-0010 で比較中(Proposed)。
 
 ### 3.2 商用 API とローカル LLM の役割分担(Proposed)
 

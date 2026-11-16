@@ -11,4 +11,4 @@ src/
 └── tests/        試験
 ```
 
-開発言語(Julia / Python / 併用)は未定です(OPEN_ISSUES Q-06)。
+開発言語:エージェント部分は Python、重い計算は Julia(`src/julia/` に置き、ツールとして呼び出す予定)。[ADR-0010](../docs/DECISIONS/ADR-0010-python-agents-julia-compute.md)

@@ -49,5 +49,5 @@ flowchart LR
 
 ## 次に取り組むこと
 
-1. Phase 1 で使う商用 LLM API を決める(OPEN_ISSUES Q-05)
-2. 開発言語を決めて P1-1([#1](https://github.com/Hiroto-Masaoka/AI-agents-family/issues/1))に着手する(Q-06)
+1. Phase 1 で使う商用 LLM API を決める(OPEN_ISSUES Q-05、[比較資料](references/llm-api-comparison-2026-11.md))
+2. Python の環境を用意して P1-1([#1](https://github.com/Hiroto-Masaoka/AI-agents-family/issues/1))に着手する(開発言語は [ADR-0010](DECISIONS/ADR-0010-python-agents-julia-compute.md) で決定済み)
