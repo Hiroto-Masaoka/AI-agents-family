@@ -6,6 +6,7 @@
 ## [Unreleased]
 
 ### Added
+- 手順書 `docs/guides/GITHUB_SETUP_AND_SYNC.md`(GitHub CLI 初期設定と変更の取り込み・公開)(LOG-20261116-04)
 - Phase 1 試験計画(5 タスク)、ADR-0008(汎用エージェント優先)、ADR-0009(Phase 1 読み取り専用)、GitHub の Milestone / Issue 作成スクリプト(LOG-20261116-03)
 
 ### Changed

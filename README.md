@@ -11,7 +11,7 @@
 |------|------|-------------|
 | リポジトリ作成(Initial commit `c325ddb`) | 完了 | Confirmed |
 | 管理方針・ドキュメント基盤の整備 | 完了(開発者承認済み) | Confirmed |
-| Phase 1 試験計画(5 タスク) | 作成済み([計画](docs/EXPERIMENTS/PHASE1_TEST_PLAN.md)) | Decided |
+| Phase 1 試験計画(5 タスク) | 作成済み([計画](docs/EXPERIMENTS/PHASE1_TEST_PLAN.md))、[Milestone](https://github.com/Hiroto-Masaoka/AI-agents-family/milestone/1) と Issue #1〜#5 を作成 | Confirmed |
 | AI-Agent 本体の実装 | **未着手**(P1-1 から開始) | — |
 | 試験・評価 | **未実施** | — |
 
@@ -38,6 +38,8 @@
 5. [ROADMAP](docs/ROADMAP.md):開発の段階と完了条件
 6. [DEVELOPMENT_LOG](docs/DEVELOPMENT_LOG.md):これまでの経緯
 7. [OPEN_ISSUES](docs/OPEN_ISSUES.md):未確認事項・未解決課題
+
+**GitHub の初期設定や、AI が作った変更の取り込み方** は [手順書](docs/guides/GITHUB_SETUP_AND_SYNC.md) を参照してください。
 
 **AI(Claude、ChatGPT など)で開発を続ける場合**は、最初に [AGENTS.md](AGENTS.md) を読ませてください。
 
@@ -66,6 +68,7 @@ AI-agents-family/
 │   ├── DECISIONS/            ← 技術的意思決定の記録(ADR)
 │   ├── EXPERIMENTS/          ← 個別の実験・試験記録
 │   ├── PROMPTS/              ← AI に与えた重要な指示文の保存
+│   ├── guides/               ← 手順書(Wiki)
 │   ├── references/           ← 外部情報から集めた参考資料
 │   └── templates/            ← 各種記録のテンプレート
 ├── scripts/github/           ← GitHub の Milestone・Issue 作成スクリプト
