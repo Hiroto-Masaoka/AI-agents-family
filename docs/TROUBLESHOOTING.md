@@ -34,6 +34,7 @@
 - 原因: セッションの GitHub 連携に書き込み権限がない(読み取りは可能)。Mac 側シェルはネットワーク制限で GitHub に届かない(Confirmed:エラーメッセージ)
 - 解決方法: 開発者の Mac のターミナルから push とスクリプト実行を行う。恒久対策として Claude GitHub App を対象リポジトリにインストールする(https://github.com/apps/claude/installations/select_target)
 - 再発防止: K-02
+- 追記(2026-11-16 10 時台): AI セッションからの push・API 書き込みが成功するようになった(権限が付与されたとみられるが、何が変わったかは未確認)。LOG-20261116-04
 
 ### T-03: `fatal: Unimplemented pathspec magic '_' in ':!_from_claude'`
 - 日付 / 関連: 2026-11-16 / LOG-20261116-04、[手順書 §8](guides/GITHUB_SETUP_AND_SYNC.md#8-うまくいかないとき)

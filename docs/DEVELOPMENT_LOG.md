@@ -216,6 +216,7 @@ GitHub API(読み取り)で、コミット・Milestone・Issue の状態を確�
 - `origin/main` = `c2dc48e`(Confirmed)
 - Milestone `Phase 1 - Read-Only Monitoring`(#1)に Issue 5 件、すべて `type:experiment, phase:1, read-only` と優先度ラベル付き(Confirmed)
 - スクリプト最後の一覧が 4 件だったのは検索反映の遅延(T-04)
+- 本エントリのコミット(`c06ea16`)は **AI セッションから直接 push できた**。ラベルの更新(API 書き込み)も成功。T-02 の状況が変わったため Q-10 を解消済みへ移動(Confirmed)
 
 ### 7. 問題と原因
 T-03(スクリプトの除外指定の書き方とエラー検知漏れ)。AI がスクリプトを渡す前に、最後まで通しで試験していなかったことが根本原因。

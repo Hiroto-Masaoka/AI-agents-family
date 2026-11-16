@@ -256,4 +256,4 @@ git pull --ff-only _from_claude/<名前>.bundle main   # 取り込み(履歴の�
 git push origin main                          # 公開
 ```
 
-AI の作業環境に GitHub の書き込み権限を与えれば(Claude の場合は [Claude GitHub App](https://github.com/apps/claude/installations/select_target) をこのリポジトリにインストール)、この手順自体が不要になります([OPEN_ISSUES Q-10](../OPEN_ISSUES.md))。
+AI の作業環境に GitHub の書き込み権限を与えれば(Claude の場合は [Claude GitHub App](https://github.com/apps/claude/installations/select_target) をこのリポジトリにインストール)、この手順自体が不要になります。2026-11-16 時点で、本リポジトリでは AI セッションからの push が可能になったことを確認済みです(LOG-20261116-04)。
