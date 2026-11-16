@@ -35,3 +35,6 @@
 ## 未決定事項
 - Python 環境の管理ツール(uv / conda / venv)
 - Python と Julia のバージョン
+
+## 追記(2026-11-17)
+- Python パッケージは `pyproject.toml` で定義し、`pip install -e ".[all]"` で導入する形にした(環境管理ツールに依存しない)。開発者は anaconda を使っているため、手順書では conda の例を示した。正式な選択は開発者の実行後に記録する(Proposed)。

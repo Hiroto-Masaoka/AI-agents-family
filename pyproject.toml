@@ -1,0 +1,29 @@
+[project]
+name = "agent-family"
+version = "0.0.1"
+description = "AI-agents-family: Phase 1 read-only agents, compared across two runtimes (Track A: Claude Agent SDK / Track B: Messages API)"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+# Track A: Claude Agent SDK (uses your Claude Pro login, not an API key)
+sdk = ["claude-agent-sdk"]
+# Track B: Messages API called directly with ANTHROPIC_API_KEY (pay-as-you-go)
+api = ["anthropic"]
+dev = ["pytest"]
+all = ["claude-agent-sdk", "anthropic", "pytest"]
+
+[project.scripts]
+agent-family = "agent_family.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["agent_family*"]
+
+[tool.pytest.ini_options]
+testpaths = ["src/tests"]
+pythonpath = ["src"]
