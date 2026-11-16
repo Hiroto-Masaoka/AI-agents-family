@@ -1,6 +1,6 @@
 # ADR-0011: Phase 1 で使う商用 LLM API
 
-- **Status:** Proposed(開発者の判断待ち)
+- **Status:** Decided(2026-11-16、末尾「決定」を参照。以下の提案本文は提案当時のまま)
 - **日付:** 2026-11-16
 - **関連:** OPEN_ISSUES Q-05、[比較資料](../references/llm-api-comparison-2026-11.md)、ADR-0004、LOG-20261116-05
 
@@ -24,3 +24,8 @@ Phase 1 の 5 タスクを実装するために、Tool Calling に対応した�
 
 ## 決定時に記録すること
 採用した API、予算上限の設定値(金額は記録してよいが API キーは書かない)、キーの保管場所(`.env`)。
+
+## 決定(2026-11-16 追記)
+- 主に使う LLM は **Anthropic(Claude)**。モデルの役割分担(Sonnet 5.5 主力、Haiku 5.5 繰り返し試験、Opus 5.5 計画・検証役)は提案どおり。
+- ただし利用経路を 2 つに分け、比較する:**Track A = Claude Pro の枠で Agent SDK**、**Track B = API キーで Messages API を直接**([ADR-0012](ADR-0012-dual-track-comparison.md))。
+- Gemini の無料枠は、P1-5 でのベンダー比較に任意で使う。

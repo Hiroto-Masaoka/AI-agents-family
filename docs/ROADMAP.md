@@ -40,6 +40,7 @@ flowchart LR
 
 | ID | Issue | タスク | 優先度 | 詳細 |
 |----|-------|--------|--------|------|
+| P1-0 | [#6](https://github.com/Hiroto-Masaoka/AI-agents-family/issues/6) | 共通基盤と 2 つの実行方式(Track A / B)の雛形 | high | [計画 §P1-0](EXPERIMENTS/PHASE1_TEST_PLAN.md#p1-0-共通基盤と-2-つの実行方式の雛形) |
 | P1-1 | [#1](https://github.com/Hiroto-Masaoka/AI-agents-family/issues/1) | 最小エージェント:リポジトリの文書に答える | high | [計画 §P1-1](EXPERIMENTS/PHASE1_TEST_PLAN.md#p1-1-最小エージェントリポジトリの文書に答える) |
 | P1-2 | [#2](https://github.com/Hiroto-Masaoka/AI-agents-family/issues/2) | 文献調査エージェント | high | [計画 §P1-2](EXPERIMENTS/PHASE1_TEST_PLAN.md#p1-2-文献調査エージェント) |
 | P1-3 | [#3](https://github.com/Hiroto-Masaoka/AI-agents-family/issues/3) | データ分析・コード読解エージェント | medium | [計画 §P1-3](EXPERIMENTS/PHASE1_TEST_PLAN.md#p1-3-データ分析コード読解エージェント) |
@@ -47,7 +48,9 @@ flowchart LR
 | P1-5 | [#5](https://github.com/Hiroto-Masaoka/AI-agents-family/issues/5) | マルチエージェント調査+独立検証:研究資金の公募調査 | medium | [計画 §P1-5](EXPERIMENTS/PHASE1_TEST_PLAN.md#p1-5-マルチエージェント調査独立検証研究資金の公募調査) |
 
 
+Phase 1 の全タスクは、**Agent SDK(Pro 枠)と API 直接(従量課金)の 2 方式で実装して比較** します([ADR-0012](DECISIONS/ADR-0012-dual-track-comparison.md))。
+
 ## 次に取り組むこと
 
-1. Phase 1 で使う商用 LLM API を決める(OPEN_ISSUES Q-05、[比較資料](references/llm-api-comparison-2026-11.md))
-2. Python の環境を用意して P1-1([#1](https://github.com/Hiroto-Masaoka/AI-agents-family/issues/1))に着手する(開発言語は [ADR-0010](DECISIONS/ADR-0010-python-agents-julia-compute.md) で決定済み)
+1. P1-0([#6](https://github.com/Hiroto-Masaoka/AI-agents-family/issues/6)):Python 環境、Agent SDK のログイン、API キーと予算上限の設定、共通部分の雛形
+2. P1-1([#1](https://github.com/Hiroto-Masaoka/AI-agents-family/issues/1))を両方式で実装・比較

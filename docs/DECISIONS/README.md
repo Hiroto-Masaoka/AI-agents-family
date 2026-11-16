@@ -21,4 +21,5 @@ ADR(Architecture Decision Record)は、重要な判断を「背景・選択肢�
 | [0008](ADR-0008-general-purpose-agents-first.md) | 当面は汎用 AI-Agent を優先し、望遠鏡固有の開発は延期する | Decided | 2026-11-16 |
 | [0009](ADR-0009-phase1-read-only-policy.md) | Phase 1 のエージェントは厳密に読み取り専用とし、プログラム側で強制する | Decided(強制方法の詳細は Proposed) | 2026-11-16 |
 | [0010](ADR-0010-python-agents-julia-compute.md) | エージェント部分は Python、重い計算は Julia で書く | Decided(連携方式は Proposed) | 2026-11-16 |
-| [0011](ADR-0011-phase1-llm-api.md) | Phase 1 で使う商用 LLM API | Proposed | 2026-11-16 |
+| [0011](ADR-0011-phase1-llm-api.md) | Phase 1 で使う商用 LLM API(Claude を主に使う) | Decided | 2026-11-16 |
+| [0012](ADR-0012-dual-track-comparison.md) | Phase 1 は Agent SDK(Pro 枠)と API 直接(従量課金)の 2 方式で実装して比較する | Decided | 2026-11-16 |

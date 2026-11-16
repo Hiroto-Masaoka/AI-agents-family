@@ -36,9 +36,13 @@ flowchart TB
     Eval[評価ハーネス<br/>試験課題・合格判定] --> H
 ```
 
+### 2 つの実行方式(Track A / B、Decided、[ADR-0012](DECISIONS/ADR-0012-dual-track-comparison.md))
+
+上図の「エージェントループ」は 2 通りで実装して比較します。**Track A** は Claude Agent SDK(Pro 枠)がループを担い、**Track B** は Messages API(API キー)を直接呼ぶループを自作します。ツール・ガードレール・トレース・評価ハーネスは両方式で共通です(詳細は [PHASE1_TEST_PLAN §2](EXPERIMENTS/PHASE1_TEST_PLAN.md#2-2-つの実行方式の比較track-a--track-b))。
+
 | 部品 | 役割 | 初出のタスク |
 |------|------|-------------|
-| エージェントループ | LLM 呼び出しとツール実行の繰り返し | P1-1 |
+| エージェントループ | LLM 呼び出しとツール実行の繰り返し(Track A:SDK / Track B:自作) | P1-0、P1-1 |
 | 読み取りツール | ファイル・外部 API・データを読む関数 | P1-1〜P1-3 |
 | ガードレール | 許可外のパス・ホスト・操作をプログラム側で拒否 | P1-1 |
 | トレース | すべての LLM 入出力・ツール呼び出しの記録 | P1-1 |

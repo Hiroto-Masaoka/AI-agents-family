@@ -38,6 +38,7 @@ create() { # $1=file $2=title $3=labels(comma)
     gh issue create --repo "$REPO" --title "$2" --body-file "$DIR/$1" --label "$3" --milestone "$MS"
   fi
 }
+create 00-p1-0.md "[P1-0] 共通基盤と 2 つの実行方式(Agent SDK・Pro 枠 / API 直接)の雛形" "type:task,phase:1,read-only,priority:high"
 create 01-p1-1.md "[P1-1] 最小エージェント:リポジトリの文書に答える"            "type:experiment,phase:1,read-only,priority:high"
 create 02-p1-2.md "[P1-2] 文献調査エージェント(arXiv API・引用検証)"            "type:experiment,phase:1,read-only,priority:high"
 create 03-p1-3.md "[P1-3] データ分析・コード読解エージェント"                    "type:experiment,phase:1,read-only,priority:medium"

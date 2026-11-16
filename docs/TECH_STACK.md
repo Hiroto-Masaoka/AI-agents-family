@@ -11,6 +11,8 @@
 | バージョン管理 | Git + GitHub(`Hiroto-Masaoka/AI-agents-family`) | Confirmed | リポジトリ作成済み。[ADR-0001](DECISIONS/ADR-0001-github-as-knowledge-base.md) |
 | ドキュメント | Markdown + Mermaid(図) | Decided | GitHub 上でそのまま表示でき、どの AI も読める |
 | 開発支援 AI | Claude(claude.ai、Claude Code) | Confirmed(ドキュメント作成で使用) | 他の AI の利用も可。記録ルールは共通 |
+| LLM | Anthropic Claude(Sonnet 5.5 主力、Haiku 5.5、Opus 5.5) | Decided | [ADR-0011](DECISIONS/ADR-0011-phase1-llm-api.md) |
+| 実行方式 | Track A:Claude Agent SDK(Pro 枠)/ Track B:Messages API 直接(API キー)を比較 | Decided | [ADR-0012](DECISIONS/ADR-0012-dual-track-comparison.md) |
 | 開発言語 | Python(エージェント)+ Julia(重い計算) | Decided | [ADR-0010](DECISIONS/ADR-0010-python-agents-julia-compute.md) |
 | LLM 実行環境の方針 | 商用 API とローカル(自前計算機)の併用 | Decided(方針のみ) | [ADR-0004](DECISIONS/ADR-0004-hybrid-llm-environment.md) |
 

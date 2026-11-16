@@ -8,7 +8,8 @@
 
 | ID | 内容 | 影響するもの | 優先度 | Issue |
 |----|------|-------------|--------|-------|
-| Q-05 | Phase 1 で使う商用 LLM API(製品、契約形態、予算上限、データ取り扱い上の制約)。比較資料と提案を作成済み([比較](references/llm-api-comparison-2026-11.md)、[ADR-0011](DECISIONS/ADR-0011-phase1-llm-api.md) Proposed)。開発者の判断待ち | P1-1 以降すべて | **最高** | #1 |
+| Q-12 | Track B(API 直接)の月の予算上限額 | P1-0 | **最高** | #6 |
+| Q-13 | Claude Pro プランで Agent SDK から使えるモデルの範囲と、利用枠の上限に達する頻度 | Track A、P1-5 | 高 | #6 |
 | Q-04 | 自前計算機の仕様(CPU / GPU / メモリ / OS)。ローカル LLM を試す Phase 4 までに必要 | ローカル LLM の選定 | 中 | — |
 | Q-07 | ミッション文書(2026-11-16)が言及する「これまでの議論」の元の記録。決まっていたことがあれば追記が必要 | 全体 | 中 | — |
 | Q-09 | 2026-11-13 に作成した Agent Family Kit(テンプレート類)を本リポジトリで使うかどうか | 開発方法 | 低 | — |
@@ -44,6 +45,7 @@ ADR-0008 により、現段階では確認不要としたもの。
 
 | ID | 内容 | 解消 |
 |----|------|------|
+| Q-05 | Phase 1 で使う商用 LLM API | 2026-11-16 Claude を主に使い、Agent SDK(Pro 枠)と API 直接の 2 方式で比較することに決定([ADR-0011](DECISIONS/ADR-0011-phase1-llm-api.md)、[ADR-0012](DECISIONS/ADR-0012-dual-track-comparison.md)、LOG-20261116-06) |
 | Q-06 | 開発言語 | 2026-11-16 エージェント部分は Python、重い計算は Julia に決定([ADR-0010](DECISIONS/ADR-0010-python-agents-julia-compute.md)、LOG-20261116-05) |
 | I-01 | DEVELOPMENT_GUIDELINES の承認 | 2026-11-16 開発者が承認(LOG-20261116-03) |
 | I-04 | Issue / PR テンプレートの `.github/` への移動 | 2026-11-16 初回コミットで `.github/` に配置(LOG-20261116-03) |
