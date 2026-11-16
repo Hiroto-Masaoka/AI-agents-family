@@ -5,6 +5,7 @@
 | 手順書 | 内容 |
 |--------|------|
 | [GITHUB_SETUP_AND_SYNC.md](GITHUB_SETUP_AND_SYNC.md) | GitHub CLI の初期設定と、AI が作った変更の取り込み・push・Issue 作成 |
+| [P1-0_SETUP.md](P1-0_SETUP.md) | P1-0 の環境構築(Python 環境、Claude Pro ログイン、API キーと予算上限)と 2 方式の動作確認 |
 
 ## 書き方のルール
 - 実際に実行した出力を根拠にし、出力例には「実際の出力」と明記する。

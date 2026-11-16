@@ -18,6 +18,7 @@
 | [LOG-20261116-05](#log-20261116-05) | 2026-11-16 | 開発言語の決定(Python + Julia)、商用 LLM API の比較と提案 | 意思決定・調査 |
 | [LOG-20261116-06](#log-20261116-06) | 2026-11-16 | Pro 枠(Agent SDK)と API 直接の 2 方式で比較する構成に決定、P1-0 追加 | 意思決定・設計 |
 | [LOG-20261116-07](#log-20261116-07) | 2026-11-16 | Track B の月の予算上限を 30 USD に決定 | 意思決定 |
+| [LOG-20261117-01](#log-20261117-01) | 2026-11-17 | P1-0:共通部分と Track A / B の雛形を実装 | 実装 |
 
 ---
 
@@ -339,3 +340,49 @@ P1-0(#6):Console での API キー取得と上限設定(開発者)、共通部�
 
 ### AI 利用の記録
 - ツール:Claude(claude-opus-5-5)。記録の更新のみ。
+
+---
+
+## LOG-20261117-01
+
+**日付:** 2026-11-17 / **種別:** 実装 / **関連:** Issue [#6](https://github.com/Hiroto-Masaoka/AI-agents-family/issues/6)、ブランチ `feat/p1-0-scaffold`、[src/README](../src/README.md)、[手順書 P1-0_SETUP](guides/P1-0_SETUP.md)
+
+### 1. 何を実現しようとしたか
+2 方式で共通に使う部分(ツール、許可リスト、記録形式、評価の入口)と、Track A(Agent SDK・Pro 枠)・Track B(API 直接)の雛形を実装する。
+
+### 2. なぜ必要だったか
+P1-1 以降を、実行方式だけを変えて公平に比較するため(ADR-0012)。
+
+### 3. 採用した技術・手法
+- 1 つのツール定義(ToolSpec)から、Track B 用の `tools` 定義と Track A 用の SDK ツール(プロセス内 MCP)の両方を生成する。
+- 読み取り専用の強制:書き込み系ツールは登録自体を拒否(ToolRegistry)。Track A は組み込みツールを全無効(`tools=[]`)+許可ツールの限定+書き込み系の明示的禁止+利用者設定の非読み込み(`setting_sources=[]`)。
+- 許可リスト:`..`・シンボリックリンクによる脱出、`.env`・鍵・`.git` などを拒否。
+- トレース:JSON Lines の共通形式(run_start / llm_call / tool_call / run_end)。Track A でもツール呼び出しは同じ関数で記録。
+- 費用の安全装置(Track B):1 回の上限と、月 30 USD のローカル記録による上限(Console の上限と二重)。
+- Track A では実行中だけ `ANTHROPIC_API_KEY` を環境変数から外し、従量課金ではなく Pro の枠が使われるようにした。
+- 外部ライブラリの依存を最小化(Track A / B のライブラリは必要な方式でだけ読み込む)。
+
+### 4. 実装・変更内容
+新規:`pyproject.toml`、`.env.example`、`src/agent_family/`(tools / guard / trace / runtimes / eval / cli)、`src/tests/test_scaffold.py`、`evals/p1-0_smoke.json`(3 問:フェーズの確認、ADR の読み取り、`.env` の拒否)、`docs/guides/P1-0_SETUP.md`。更新:src/README、README、OPEN_ISSUES(P-04)、.gitignore、guides/README、CHANGELOG。
+
+### 5. 試験内容
+LLM に接続しない単体試験 16 件:許可リスト(脱出・機密・シンボリックリンク)、ツール、Track B のループ(偽の LLM で tool_use → tool_result → 最終回答、ステップ上限、予算超過時に LLM を呼ばないこと、拒否されたツールが失敗として LLM に返ること)、Track A の設定(組み込みツール無効、許可ツール、指示文が共通)と SDK ツールの動作・トレース形式、評価ハーネス(比較表、SHA-256 前後比較)。
+
+### 6. 試験結果
+- 16 件すべて合格(Confirmed、AI の作業環境:Python 3.13、claude-agent-sdk 0.2.172)。
+- **実際の LLM での動作確認は未実施(Unverified)**:AI の作業環境には開発者の Pro ログインと API キーがないため。開発者の Mac で手順書 §6 を実行して確認する。
+
+### 7. 問題と原因
+なし(Track B の `anthropic` パッケージは AI の作業環境に入っておらず導入もできないため、偽の LLM で試験した)。
+
+### 8. 得られた知見
+- Claude Agent SDK は、組み込みツールの無効化(`tools=[]`)、自作ツールのプロセス内 MCP 登録、費用上限(`max_budget_usd`)、利用量・費用の報告(ResultMessage)を備えており、Track B と同じ条件・同じ記録形式に揃えられる(SDK 0.2.172 のコードで確認)。
+
+### 9. 次に実施すること
+1. 開発者が手順書 P1-0_SETUP に従って環境構築し、`agent-family eval --tracks a,b evals/p1-0_smoke.json` を実行
+2. 結果を EXP 記録にし、#6 を完了 → P1-1(#1)へ
+
+### AI 利用の記録
+- ツール:Claude(claude-opus-5-5)
+- 生成物:§4 のファイル(すべて AI 生成)
+- 人間の確認:**未確認**(PR でのレビュー待ち)
