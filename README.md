@@ -12,7 +12,7 @@
 | リポジトリ作成(Initial commit `c325ddb`) | 完了 | Confirmed |
 | 管理方針・ドキュメント基盤の整備 | 完了(開発者承認済み) | Confirmed |
 | Phase 1 試験計画(5 タスク) | 作成済み([計画](docs/EXPERIMENTS/PHASE1_TEST_PLAN.md))、[Milestone](https://github.com/Hiroto-Masaoka/AI-agents-family/milestone/1) と Issue #1〜#5 を作成 | Confirmed |
-| AI-Agent 本体の実装 | **未着手**(P1-1 から開始) | — |
+| P1-0 共通基盤と 2 方式(Track A / B)の雛形 | 実装済み(LLM なしの試験 16 件に合格)。実機での動作確認は未実施 | Confirmed(単体試験)/ Unverified(実機) |
 | 試験・評価 | **未実施** | — |
 
 現在は **Phase 1(Read-Only Monitoring)** の準備段階です。詳細は [ROADMAP](docs/ROADMAP.md) と [開発ログ](docs/DEVELOPMENT_LOG.md) を参照してください。
@@ -71,6 +71,8 @@ AI-agents-family/
 │   ├── guides/               ← 手順書(Wiki)
 │   ├── references/           ← 外部情報から集めた参考資料
 │   └── templates/            ← 各種記録のテンプレート
+├── evals/                    ← 試験課題(JSON)
+├── pyproject.toml            ← Python パッケージ定義(pip install -e ".[all]")
 ├── scripts/github/           ← GitHub の Milestone・Issue 作成スクリプト
 └── src/                      ← ソースコード(現時点では未実装)
 ```
