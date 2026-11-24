@@ -6,6 +6,7 @@
 ## [Unreleased]
 
 ### Added
+- Claude Code 用の読み取り専用 hook(`.claude/hooks/block_write.py`、有効化せず例として配置)、単体試験 31 件、`evals/scorecard.md`(LOG-20261124-01)
 - P1-0:共通部分(ツール・許可リスト・トレース・評価ハーネス)と Track A / B の雛形、CLI、単体試験 16 件、手順書 P1-0_SETUP(LOG-20261117-01)
 - ADR-0012(2 方式の比較)、P1-0(共通基盤)と Issue #6、Phase 1 計画に Track A / B の比較設計(LOG-20261116-06)
 - ADR-0010(Python + Julia)、ADR-0011(LLM API、提案)、LLM API 比較資料(LOG-20261116-05)
